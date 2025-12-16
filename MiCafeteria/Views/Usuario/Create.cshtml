@@ -1,0 +1,32 @@
+﻿@model MiCafeteria.Core.Entities.Usuario
+
+@{
+    var Rol = ViewData["Id"] as SelectList;
+}
+
+<h3>Elije un rol</h3>
+
+<form asp-controller="Usuario" asp-action="Create" method="post">
+    <label asp-for="NombreCompleto" class="form-label"></label>
+    <input asp-for="NombreCompleto" class="form-control" />
+
+    <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+
+       <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" class="form-control" />
+
+    <span asp-validation-for="Email" class="text-danger"></span>
+
+    <label asp-for="Password" class="form-label"></label>
+    <input asp-for="Password" class="form-control" />
+
+    <span asp-validation-for="Password" class="text-danger"></span>
+
+<select asp-for="Id" asp-items="Rol" class="form-control">
+    <option value="">--- Selecciona un Rol --- </option>
+</select>
+
+
+<span asp-validation-for="Id" class="text-danger"></span> 
+
+</form>

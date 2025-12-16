@@ -1,0 +1,33 @@
+﻿@model List<MiCafeteria.Core.Entities.Usuario>
+
+
+
+
+
+<h1>Usuarios</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Create">Nuevo Usuario</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            @* link para ordenar por nombre(asc-desc) *@
+            <th> Email</th>
+            <th> Password</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.NombreCompleto</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.Rol</td>
+                <td><a asp controller="Usuario" asp-action="Edit" asp-route-id="@usuario.Id" type="button" class="btn btn-outline-primary btn-sm">Editar</a></td>
+                <td><a asp controller="Usuario" asp-action="Delete" asp-route-id="@usuario.Id" type="button" class="btn btn-outline-primary btn-sm">Eliminar</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>

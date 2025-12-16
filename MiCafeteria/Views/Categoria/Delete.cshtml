@@ -1,0 +1,26 @@
+﻿@model MiCafeteria.Core.Entities.Categoria
+
+
+<h3>@ViewBag.Title</h3>
+
+
+<form asp-controller="Categoria" asp-action="Delete" method="post">
+    <input type="hidden" id="Id" value="@ViewBag.Id" />
+    <label asp-for="Nombre" class="form-label"></label>
+    <input asp-for="Nombre" class="form-control" />
+
+    <span asp-validation-for="Nombre" class="text-danger"></span>
+
+    <label asp-for="Descripcion" class="form-label"></label>
+    <input asp-for="Descripcion" class="form-control" />
+
+    <span asp-validation-for="Descripcion" class="text-danger"></span>
+
+    @* todo formulario tiene que tener un submit *@
+    <button type="submit" class="btn btn-primary">Eliminar</button>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

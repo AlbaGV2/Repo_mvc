@@ -1,0 +1,23 @@
+﻿@model Producto
+
+
+
+
+<h3>ELiminar Producto</h3>
+
+<p>@Model.Nombre</p>
+<p>@Model.Precio.ToString("N2")</p>
+
+<form asp-controller="Producto" asp-action="DeleteConfirmed" method="post">
+    @* todo formulario tiene que tener un submit *@
+    <button type="submit" class="btn btn-primary">Borrar</button>
+    <a type="button" class="btn btn-secondary" asp-controller="Producto" asp-action="Index">Cancelar</a>
+</form>
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

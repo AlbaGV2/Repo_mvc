@@ -1,0 +1,42 @@
+﻿@* @using MiCafeteria.Core.Entities  *@
+@model List<MiCafeteria.Core.Entities.Categoria>
+
+<!-- Formulario de búsqueda -->
+<form method="post" asp-controller="Categoria" asp-action="Index">
+    <label>Nombre</label>
+    <input type="text" name="nombreFiltro"
+           placeholder="Buscar por nombre..." class="form-control" />
+    <label>Descripcion</label>
+    <input name="descripcion" class="form-control" />
+    <button type="submit">Filtrar categoria</button>
+    <button type="reset">Limpiar</button>
+</form>
+
+
+
+<h1>CATEGORIAS</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="Categoria" asp-action="CreateCategoria">Nueva Categoria</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th><a asp-controller="Categoria" asp-action="Index" asp-route-criterio="Nombre">Nombre</a></th>
+                @* link para ordenar por nombre(asc-desc) *@
+            <th><a asp-controller="Categoria" asp-action="Index" asp-route-criterio="Descripcion"> Descripcion</a></th>
+                
+                <th></th>
+        </tr>
+    </thead>
+        <tbody>
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.Nombre</td>
+                <td>@categoria.Descripcion</td>
+                <td><a asp controller="Categoria" asp-action="Edit" asp-route-id="@categoria.Id" type="button" class="btn btn-outline-primary btn-sm">Editar</a></td>
+                <td><a asp controller="Categoria" asp-action="Delete" asp-route-id="@categoria.Id" type="button" class="btn btn-outline-primary btn-sm">Eliminar</a></td>
+            </tr>
+            
+        }
+        </tbody>
+    </table>

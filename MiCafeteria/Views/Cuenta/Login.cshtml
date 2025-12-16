@@ -1,0 +1,25 @@
+﻿@model MiLogin
+
+
+<h3>@ViewBag.Title</h3>
+
+
+<form asp-controller="Cuenta" asp-action="login" method="post">
+    <label asp-for="Nombre" class="form-label"></label>
+    <input asp-for="Nombre" class="form-control" />
+
+    <span asp-validation-for="Nombre" class="text-danger"></span>
+
+    <label asp-for="Pass" class="form-label"></label>
+    <input asp-for="Pass" class="form-control" type="password"/>
+
+    <span asp-validation-for="Pass" class="text-danger"></span>
+
+    @* todo formulario tiene que tener un submit *@
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

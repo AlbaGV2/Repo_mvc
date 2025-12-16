@@ -1,0 +1,57 @@
+﻿@model List<MiCafeteria.Core.Entities.Producto>
+
+@{
+    // por defecto nunca lo mostramos
+    bool sePuedeAniadirACesta = false;
+    if (ViewData["sePuedeAniadirACesta"] != null)
+        sePuedeAniadirACesta = (bool)ViewData["sePuedeAniadirACesta"];
+
+    // Daría fallo por que el valor que le estamos dando en ["....."] es de tipo string y su valor debe ser tipo Object, para ello hay que hacer un CAST con (bool) y hay que asegurarse
+    // De que esta entrada existe en el controlador
+    bool esEditable = (bool)ViewData["esEditable"];
+    bool esDeleteable = (bool)ViewData["esDeleteable"];
+
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><a asp-controller="Producto" asp-action="Index" asp-route-criterio="Nombre">Nombre</a></th>
+            <th><a asp-controller="Producto" asp-action="Index" asp-route-criterio="Precio"> Precio</a></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var producto in Model)
+{
+    <tr> 
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Precio €</td>
+
+
+
+                @* Esto haria que  que en productoController se vean los botones editar y borrar y en homeController no, por que en un controllador es true y en el otro el false *@
+
+                @if(esEditable == true)
+                {
+                <td><a asp-controller="Producto" asp-action="Edit" asp-route-id="@producto.Id" type="button" class="btn btn-outline-primary btn-sm">Editar</a></td>
+                }
+
+
+                @if (esDeleteable)
+                {
+                    <td><a asp-controller="Producto" asp-action="Delete" asp-route-id="@producto.Id" type="button" class="btn btn-outline-primary btn-sm">Eliminar</a></td>
+                }
+
+                @if (sePuedeAniadirACesta == true)
+                {
+                    <td><a asp-controller="Home" asp-action="addToCesta" asp-route-id="@producto.Id" type="button" class="btn btn-outline-success btn-sm">Añadir</a></td>
+                }
+            </tr>
+            
+             
+}
+
+    </tbody>
+</table>

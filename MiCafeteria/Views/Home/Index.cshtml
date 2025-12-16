@@ -1,0 +1,56 @@
+﻿@model List<MiCafeteria.Core.Entities.Categoria>
+@{
+    ViewData["Title"] = "Home Page";
+
+    // var miViewData = new ViewDataDictionary(ViewData)
+    // {
+    //     {"esEditable", false },
+    //     {"esDeleteable", false }
+    // };
+
+}
+
+
+
+
+
+<h1>Nuestros Productos</h1>
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Producto" asp-action="Create">Nuevo producto</a>
+
+        @foreach (var categoriaConProductos in Model)
+            {
+                
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h1 class="display-4">@categoriaConProductos.Nombre</h1>
+                            <p>@categoriaConProductos.Descripcion</p>
+              
+                        @* @foreach (var producto in categoriaConProductos.Productos) *@
+            @* { *@
+
+                @* <ul class="list-group list-group-flush border-top border-bottom">
+                                    <li class="list-group-item">
+                                        <p>@producto.Nombre</p>
+                                        <span>@producto.Precio €</span>
+                                        <a asp controller="Home" asp-action="VerTodo" asp-route-id="@contador" type="button" class="btn btn-outline-primary btn-sm">Ver Todo</a>
+                                    </li>
+                                 </ul>     *@
+            @* @await Html.PartialAsync("~/Views/Producto/_Productos.cshtml", categoriaConProductos.Productos); *@
+            <partial name="~/Views/Producto/_Productos.cshtml" model="categoriaConProductos.Productos"></partial>
+
+
+            @* llamar a una clase parcial que esta en view productos aun que yano tenga la vista parcial de _productos de home se esta llamando a esta otra. *@
+            @* <partial name="~/Views/Producto/_Productos.cshtml" model="categoriaConProductos.Productos" view-data="miViewData"></partial> *@
+                                  
+                @* } *@
+            @if (User.IsInRole("Gerente")) {
+                <a asp-controller="Producto" asp-action="Index" type="button" class="btn btn-outline-primary btn-sm">Productos</a>
+                                        
+            }
+        </div>
+                    </div>
+            }
+        
+            
+

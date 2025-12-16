@@ -1,0 +1,33 @@
+﻿@model MiCafeteria.Core.Entities.Producto
+
+<h3>Nuevo Producto</h3>
+
+<form asp-controller="Producto" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <label asp-for="Nombre" class="form-label"></label>
+    <input asp-for="Nombre" class="form-control" />
+
+    <span asp-validation-for="Nombre" class="text-danger"></span>
+
+    <label asp-for="Precio" class="form-label"></label>
+    <input asp-for="Precio" class="form-control" />
+
+    <span asp-validation-for="Precio" class="text-danger"></span>
+
+    <label asp-for="Categoria" class="form-label"></label>
+    <input asp-for="Categoria" class="form-control" />
+    <span asp-validation-for="Categoria" class="text-danger"></span>
+
+    <option value="">---Selecciona una categoria</option>
+
+    @* todo formulario tiene que tener un submit *@
+    <button type="submit" class="btn btn-primary">Editar</button>
+</form>
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,108 @@
+﻿@model List<MiCafeteria.Core.Entities.Producto>
+
+@{
+    int totalPaginas = ViewBag.totalPaginas;
+    string anteriorDisable = "";
+    string siguienteDisable = "";
+
+    if (ViewBag.pagina == 1)
+    {
+        anteriorDisable = "disabled";
+        
+    }if (ViewBag.pagina == ViewBag.totalPaginas)
+    
+        siguienteDisable = "disabled";
+
+    }
+
+
+
+}
+
+
+    <h1>PRODUCTOS</h1>
+
+
+<!-- Formulario de búsqueda -->
+<form method="post"asp-controller="Producto" asp-action="Index">
+    <input type="text" name="filtroNomPro"
+           placeholder="Buscar por nombre..." />
+    <button type="submit">Buscar</button>
+    <button type="reset">Limpiar</button>
+</form>
+
+
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Producto" asp-action="Create">Nuevo producto</a>
+
+@* aqui se cargara la vista "Parcial" _productos, copio la tabla de esta vista en la vista _productos y esta la quito para no repetirla y entonces al llamar a la vista parcial
+se cargara la tabla que esta en la otra vista y en la otra vista no se pone partial name.... etc*@
+<partial name="_Productos" model="Model"></partial>
+
+<h1>fuera del partial view</h1>
+
+@* En vez de poner 5 paginas, tiene que haber tantas paginas como productos *@
+
+<nav>
+    <ul class="pagination">
+        <!-- Página anterior -->
+        <li class="page-item @anteriorDisable" >
+            <a class="page-link" asp-action="Index" asp-controller="Producto" asp-route-pagina="@(ViewBag.pagina -1)">Anterior</a>
+        </li>
+
+        <!-- Números -->
+        @for (var i = 1; i<= @totalPaginas; i++) 
+        {
+            <li class ="page-item">
+                <a class="page-link" asp-action="Index" asp-controller="Producto" asp-route-pagina="@i">@i</a>
+    </li>
+}
+        @* <li class="page-item active">    
+            <a class="page-link" href="#">2</a>
+        </li> *@
+
+        <!-- Página siguiente -->
+        <li class="page-item @siguienteDisable" >
+            <a class="page-link" asp-action="Index" asp-controller="Producto" asp-route-pagina="@(ViewBag.pagina +1)">Siguiente</a>
+        </li>
+    </ul>
+</nav>
+
+@* 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody> *@
+
+
+
+@* @foreach (var categoriaConProductos in Model)
+            { *@
+
+            @*     <div class="card mb-4">
+                        <div class="card-body">
+            <h1 class="display-4">@categoriaConProductos.Nombre</h1>
+            <p>@categoriaConProductos.Precio</p> *@
+                
+                @* <tr> 
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Precio €</td>
+                <td><a asp controller="Categoria" asp-action="Edit" asp-route-id="@contador" type="button" class="btn btn-outline-primary btn-sm">Editar</a></td>
+                <td><a asp controller="Categoria" asp-action="Delete" asp-route-id="@contador" type="button" class="btn btn-outline-primary btn-sm">Eliminar</a></td>
+                </tr>
+            contador++; *@
+            
+        @* } *@
+        
+                    
+        
+        @* </tbody>
+    </table> *@
+
+
+                
