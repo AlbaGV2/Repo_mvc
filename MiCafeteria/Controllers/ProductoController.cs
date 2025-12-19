@@ -1,11 +1,6 @@
-﻿using MiCafeteria.Core.Entities;
-using MiCafeteria.Data.Contexts;
-using MiCafeteria.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Features;
+﻿using MiCafeteria.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace MiCafeteria.Controllers
 {
@@ -69,16 +64,16 @@ namespace MiCafeteria.Controllers
             {
 
                 productos = productos.OrderBy(x => x.Nombre);
-               
+
             }
             else if (criterio == "Descripcion")
             {
 
                 productos = productos.OrderBy(x => x.Precio);
-                
+
             }
 
-           
+
 
 
             //var result = productos.ToList();
@@ -107,7 +102,7 @@ namespace MiCafeteria.Controllers
             //Retornamos el que mas nos interese. Aun que al final en la practica solo tendremos una unica variable.
             return View(list);
         }
-        
+
 
 
 
@@ -140,9 +135,9 @@ namespace MiCafeteria.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            else 
-            {             
-            return View(model);
+            else
+            {
+                return View(model);
             }
 
             //productos.Add(model);
@@ -157,12 +152,12 @@ namespace MiCafeteria.Controllers
             //Para que no salga una excepcion
             if (id <= 0)
             {
-               return NotFound(); 
+                return NotFound();
             }
             var model = _context.Productos.Find(id);
 
             var items = _context.Categorias.ToList();
-            ViewData["Id"] = new SelectList(items, 
+            ViewData["Id"] = new SelectList(items,
                 nameof(Core.Entities.Categoria.Id), nameof(Core.Entities.Categoria.Nombre));
             return View(model);
         }
@@ -193,7 +188,7 @@ namespace MiCafeteria.Controllers
             //return RedirectToAction(nameof(Index));
             return View(model);
         }
-        
+
 
 
 
@@ -221,7 +216,7 @@ namespace MiCafeteria.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-      
+
 
     }
 }

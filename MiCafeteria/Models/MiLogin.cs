@@ -1,4 +1,4 @@
-﻿using System.Formats.Tar;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MiCafeteria.Models
 {
@@ -7,6 +7,11 @@ namespace MiCafeteria.Models
 
         public String Nombre { get; set; }
 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
         public String Pass { get; set; }
     }
 }

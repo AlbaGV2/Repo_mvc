@@ -5,7 +5,7 @@
 
         public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
         public DateTime FechaModificacion { get; set; } = DateTime.UtcNow;
-       
+
 
     }
 }

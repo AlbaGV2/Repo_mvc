@@ -9,7 +9,7 @@ namespace MiCafeteria.Models
 
         [StringLength(20)]
         public String descripcion { get; set; }
-      
+
 
         public Categoria() { }
         public Categoria(String nombre, String descripcion)

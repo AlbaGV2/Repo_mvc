@@ -1,9 +1,7 @@
-using MiCafeteria.Core.Entities;
 using MiCafeteria.Data.Contexts;
 using MiCafeteria.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics;
 
 namespace MiCafeteria.Controllers
@@ -69,16 +67,16 @@ namespace MiCafeteria.Controllers
         //    return View(reserva);
         //}
 
-        public IActionResult AddToCesta( int Id)
+        public IActionResult AddToCesta(int Id)
         {
 
             //TODO: Validar que el producto exista y añadirlo al carrito.
             var producto = _context.Productos.Find(Id);
 
             //si el producto no es null o existe, se añade
-           
-                listaProductos.Add(producto);
-            
+
+            listaProductos.Add(producto);
+
 
             return RedirectToAction(nameof(Index));
 

@@ -4,7 +4,8 @@ namespace MiCafeteria.Core.Entities
 {
     public class Usuario
     {
-        public string Id { get; set; }
+        //public int Id { get; set; }
+        public int UsuarioId { get; set; }
         public string NombreCompleto { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

@@ -1,14 +1,5 @@
-﻿using MiCafeteria.Core.Entities;
-using MiCafeteria.Data.Contexts;
-using MiCafeteria.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using MiCafeteria.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Timers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace MiCafeteria.Controllers
@@ -18,7 +9,7 @@ namespace MiCafeteria.Controllers
     public class CategoriaController : Controller
     {
         //private static List<Categoria> categorias = new List<Categoria>
-        
+
         //{
         //    new Categoria(){nombre = "Bebidas Calientes", descripcion = "Cafés, tés y más"},
         //    new Categoria(){nombre = "Bebidas Frías", descripcion = "Zumos y refrescos"},
@@ -35,20 +26,20 @@ namespace MiCafeteria.Controllers
         //El que quiera utilizar mydbcontext tiene que recuperarlo a traves de su constructor
         public CategoriaController(MyDbContext context)
         {
-            
+
             _context = context;
         }
 
         public IActionResult Index(string nombreFiltro, string descripcion, string criterio)
         {
-         
+
             var categorias = _context.Categorias.AsQueryable();
 
             if (!string.IsNullOrEmpty(nombreFiltro))
                 categorias = categorias.Where(w => w.Nombre.Contains(nombreFiltro));
             if (!string.IsNullOrEmpty(descripcion))
                 categorias = categorias.Where(w => w.Descripcion.Contains(descripcion));
-            
+
 
 
 
@@ -100,7 +91,7 @@ namespace MiCafeteria.Controllers
             //    .Where(x => x.Nombre.EndsWith("s"));
 
 
-            
+
             //Retornamos el que mas nos interese. Aun que al final en la practica solo tendremos una unica variable.
             return View(result);
         }
@@ -120,7 +111,7 @@ namespace MiCafeteria.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateCategoria([Bind("Id","Nombre", "Descripcion")] Core.Entities.Categoria model)
+        public IActionResult CreateCategoria([Bind("Id", "Nombre", "Descripcion")] Core.Entities.Categoria model)
         {
             if (ModelState.IsValid)
             {

@@ -6,7 +6,7 @@ namespace MiCafeteria.Core.Entities
     {
         public int Id { get; set; }
 
-        
+
         //required Es un atributo para decir que no puede ser null
         [Required]
         public string Nombre { get; set; }

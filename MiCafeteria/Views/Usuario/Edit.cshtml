@@ -2,10 +2,12 @@
 
 
 @{
-    var Rol = ViewData["Id"] as SelectList;
+    var roles = ViewData["Roles"] as SelectList;
 }
 
 <form asp-controller="Usuario" asp-action="Edit" method="post">
+    @* Si me da un error tipos edit/1 es por que me falta el hidden *@
+    <input asp-for="UsuarioId" type="hidden" />
     <label asp-for="NombreCompleto" class="form-label"></label>
     <input asp-for="NombreCompleto" class="form-control" />
 
@@ -21,7 +23,12 @@
 
     <span asp-validation-for="Password" class="text-danger"></span>
 
-    <span asp-validation-for="Id" class="text-danger"></span>
+    <label asp-for="Rol" class="form-label"></label>
+    <select asp-for="Rol" asp-items="roles" class="form-control">
+        <option value="">--- Selecciona un Rol ---</option>
+    </select>
+    <span asp-validation-for="Rol" class="text-danger"></span>
+
 
     @* todo formulario tiene que tener un submit *@
     <button type="submit" class="btn btn-primary">Editar</button>

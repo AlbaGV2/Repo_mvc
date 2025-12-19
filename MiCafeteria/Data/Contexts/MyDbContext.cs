@@ -42,7 +42,7 @@ namespace MiCafeteria.Data.Contexts
                 .Where(x => x.State == EntityState.Added
                 || x.State == EntityState.Modified);
 
-            foreach (var entrada in entradas) 
+            foreach (var entrada in entradas)
             {
                 //FechaModificacion hereda de la Clase Auditoria
                 entrada.Entity.FechaModificacion = ahora;
@@ -50,7 +50,7 @@ namespace MiCafeteria.Data.Contexts
                 if (entrada.State == EntityState.Added)
                     //FechaCreacion hereda de la clase Auditoria
                     entrada.Entity.FechaCreacion = ahora;
-            
+
             }
             return base.SaveChanges(acceptAllChangedOnSuccess);
         }

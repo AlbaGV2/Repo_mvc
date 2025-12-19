@@ -1,4 +1,6 @@
+using MiCafeteria.Core.Entities;
 using MiCafeteria.Data.Contexts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,16 +14,18 @@ string cnnString = builder.Configuration.GetConnectionString("DefaultConnection"
 builder.Services.AddDbContext<MyDbContext>(options =>
 options.UseSqlServer(cnnString));
 
-
+//Builder para encriptar contraseña
+builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 
 
 //Ini: nuestra configuracion para simular la autentificacion
 builder.Services.AddAuthentication("miCookieAuth")
 //Controlado que gestiona el login de un usuario
-    .AddCookie("miCookieAuth", opt => {
+    .AddCookie("miCookieAuth", opt =>
+    {
         //controlado que gestiona el login de un usuario
-         opt.LoginPath = "/Cuenta/Login";
-     });
+        opt.LoginPath = "/Cuenta/Login";
+    });
 
 builder.Services.AddAuthorization();
 //Fin: nuestra configuracion para simular la autentificacion
